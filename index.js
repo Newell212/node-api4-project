@@ -50,6 +50,19 @@ server.post('/api/register', (req, res) => {
     }
 })
 
+server.post('/api/login', (req, res) => {
+    const user = req.body;
+    if(!user.username || !user.password) {
+        res.status(400).json({
+            message: "Unable to login"
+        })
+    } else {
+        res.status(200).json({
+            message: `Welcome back ${user.username}`
+        })
+    }
+})
+
 server.use('*', (req, res, next) => {
     res.send('<h1>Hello, there</h1>')
 })
